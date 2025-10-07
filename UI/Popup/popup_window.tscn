@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1rmhdyyrgslj"]
+
+[ext_resource type="Script" uid="uid://rw34qw344o52" path="res://UI/Popup/popup_window.gd" id="1_e8lh5"]
+
+[node name="PopupWindow" type="Window" node_paths=PackedStringArray("label")]
+disable_3d = true
+oversampling_override = 1.0
+initial_position = 4
+size = Vector2i(310, 100)
+always_on_top = true
+popup_window = true
+script = ExtResource("1_e8lh5")
+label = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+fit_content = true

@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://drg064lp8koyt"]
+
+[ext_resource type="Script" uid="uid://yoa6e75uq1qn" path="res://UI/gltf_importer.gd" id="1_tql7x"]
+[ext_resource type="Script" uid="uid://coy6krpuead4" path="res://ScenePreview/scene_preview.gd" id="2_4i0ei"]
+[ext_resource type="Script" uid="uid://b6x08vv53ggsv" path="res://ScenePreview/camera.gd" id="3_gno1k"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_gno1k"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("import_button", "save_button", "file_dialog", "scene_preview")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tql7x")
+import_button = NodePath("SplitContainer/Panel/BoxContainer/ImportButton")
+save_button = NodePath("SplitContainer/Panel/BoxContainer/SaveButton")
+file_dialog = NodePath("FileDialog")
+scene_preview = NodePath("SplitContainer/SubViewportContainer/SubViewport/ScenePreview")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0
+title = "Open a File"
+position = Vector2i(0, 36)
+visible = true
+ok_button_text = "Import"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.gltf", "*.glb")
+use_native_dialog = true
+folder_creation_enabled = false
+
+[node name="SplitContainer" type="SplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="SplitContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="ImportButton" type="Button" parent="SplitContainer/Panel/BoxContainer"]
+layout_mode = 2
+text = "Import 3D scene (.glb/.gltf)"
+
+[node name="SaveButton" type="Button" parent="SplitContainer/Panel/BoxContainer"]
+layout_mode = 2
+text = "Save as Scene"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SplitContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(570, 648)
+render_target_update_mode = 4
+
+[node name="ScenePreview" type="Node3D" parent="SplitContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("camera")]
+script = ExtResource("2_4i0ei")
+camera = NodePath("../CameraPivot")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SplitContainer/SubViewportContainer/SubViewport/ScenePreview"]
+mesh = SubResource("SphereMesh_gno1k")
+
+[node name="CameraPivot" type="Node3D" parent="SplitContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("subviewport", "camera")]
+transform = Transform3D(0.53114724, -0.35807583, 0.76789606, 0, 0.9063079, 0.42261833, -0.84727967, -0.22447255, 0.4813829, 0, 0, 0)
+script = ExtResource("3_gno1k")
+subviewport = NodePath("../..")
+camera = NodePath("Camera3D")
+cam_speed = 15.0
+
+[node name="Camera3D" type="Camera3D" parent="SplitContainer/SubViewportContainer/SubViewport/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.4)
