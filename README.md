@@ -27,6 +27,7 @@ Import your scene to generate a web program which can be hosted on sites like it
   - Custom loading screen
 
 # How to use
+  ⚠️ The Release is currently only available for windows
 - Download the latest build.
 - Launch 3D Scene Packer.exe.
 - Press "Import 3D scene (.glb/.gltf)" and import your file or drag-and-drop on the window.
