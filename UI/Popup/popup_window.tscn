@@ -1,14 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1rmhdyyrgslj"]
+[gd_scene load_steps=3 format=3 uid="uid://b1rmhdyyrgslj"]
 
+[ext_resource type="Theme" uid="uid://bffndldj43qk5" path="res://Assets/Themes/main_theme.tres" id="1_ajb4l"]
 [ext_resource type="Script" uid="uid://rw34qw344o52" path="res://UI/Popup/popup_window.gd" id="1_e8lh5"]
 
 [node name="PopupWindow" type="Window" node_paths=PackedStringArray("label")]
 disable_3d = true
 oversampling_override = 1.0
+title = "Import 3D scene"
 initial_position = 4
 size = Vector2i(310, 100)
 always_on_top = true
 popup_window = true
+theme = ExtResource("1_ajb4l")
 script = ExtResource("1_e8lh5")
 label = NodePath("RichTextLabel")
 
@@ -20,3 +23,5 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

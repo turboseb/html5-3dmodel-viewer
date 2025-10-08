@@ -1,12 +1,27 @@
 extends Node3D
 
 @export var camera: Node3D
+@export var import_parent: Node3D
+@export var exported_scene: Node3D
 
-func _ready() -> void:
-	SignalBus.scene_imported.connect(reset_camera)
 
-func reset_camera() -> void:
-	camera.reset_camera(get_node_aabb(self))
+func set_ownership(node: Node, root: bool = false) -> void:
+	if !root:
+		node.owner = exported_scene
+	for child in node.get_children():
+		set_ownership(child)
+
+func new_imported_scene(gltf_scene_root_node: Node) -> void:
+	for child: Node in import_parent.get_children():
+		child.queue_free()
+	import_parent.add_child(gltf_scene_root_node)
+	gltf_scene_root_node.owner = get_tree().root
+	exported_scene.set_meta("max_camera_ditance", reset_camera())
+	set_ownership(exported_scene, true)
+
+func reset_camera() -> float:
+	return camera.reset_camera(get_node_aabb(import_parent))
+
 
 ## Return the [AABB] of the node.
 ## From u/Magodra on reddit [https://www.reddit.com/r/godot/comments/18bfn0n/comment/mcvw7cl/]

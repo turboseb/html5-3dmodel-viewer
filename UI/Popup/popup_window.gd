@@ -17,4 +17,4 @@ func setup(type:type_enum, message: String) -> void:
 			pass
 		type_enum.error:
 			title = "Error"
-			label.text = "[color=red]" + message
+			label.text = "[b]" +message

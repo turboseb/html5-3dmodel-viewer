@@ -20,4 +20,3 @@ Allows to create a web viewer for your 3D scene from glTF files.
 Godot has full support for **glTF 2.0** with both text (.gltf) and binary (.glb) formats.
 This standard allows to import complex 3D scenes.<br/>
 **glTF** is continuously being developed, new updates will allow more flexibility with this tool.
-

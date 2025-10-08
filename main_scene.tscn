@@ -1,0 +1,339 @@
+[gd_scene load_steps=13 format=3 uid="uid://cltrgb6txkvd0"]
+
+[ext_resource type="Script" uid="uid://yoa6e75uq1qn" path="res://UI/gltf_importer.gd" id="1_gyfs4"]
+[ext_resource type="Script" uid="uid://coy6krpuead4" path="res://ScenePreview/scene_preview.gd" id="2_d5x1h"]
+[ext_resource type="Script" uid="uid://b6x08vv53ggsv" path="res://ScenePreview/camera.gd" id="3_8mm7a"]
+[ext_resource type="Script" uid="uid://b4cqladeuj816" path="res://UI/3dview_container.gd" id="3_hq1ik"]
+[ext_resource type="Script" uid="uid://dm5th6qty0v2u" path="res://UI/scene_parameters.gd" id="3_nfk4m"]
+[ext_resource type="Script" uid="uid://onffrhq1ujr" path="res://ScenePreview/material_setter.gd" id="6_nfk4m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5x1h"]
+bg_color = Color(0.18000486, 0.1800049, 0.18000478, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hq1ik"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hq1ik"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nfk4m"]
+color = Color(1, 1, 1, 0.12156863)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d5x1h"]
+
+[sub_resource type="Environment" id="Environment_d5x1h"]
+background_mode = 1
+background_color = Color(0.6052743, 0.6052743, 0.6052743, 1)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/test = true
+
+[node name="glTFImporter" type="Node" parent="." node_paths=PackedStringArray("exported_scene", "import_button", "save_button", "load_dialog", "save_dialog", "scene_preview", "camera_pivot")]
+script = ExtResource("1_gyfs4")
+temporary_dir = "user://"
+file_name = "custom_scene"
+exported_scene = NodePath("../SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene")
+import_button = NodePath("../SplitContainer/Panel/MarginContainer/BoxContainer/ImportButton")
+save_button = NodePath("../SplitContainer/Panel/MarginContainer/BoxContainer/SaveButton")
+load_dialog = NodePath("../LoadDialog")
+save_dialog = NodePath("../SaveDialog")
+scene_preview = NodePath("../SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview")
+camera_pivot = NodePath("../SplitContainer/Control/SubViewportContainer/SubViewport/CameraPivot")
+
+[node name="LoadDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 4
+always_on_top = true
+ok_button_text = "Import"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.gltf", "*.glb")
+use_native_dialog = true
+folder_creation_enabled = false
+
+[node name="SaveDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0
+initial_position = 4
+always_on_top = true
+access = 2
+filters = PackedStringArray("*.zip")
+use_native_dialog = true
+
+[node name="SplitContainer" type="SplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+theme_override_styles/split_bar_background = SubResource("StyleBoxFlat_d5x1h")
+split_offset = -110
+
+[node name="Panel" type="ColorRect" parent="SplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="SplitContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BoxContainer" type="BoxContainer" parent="SplitContainer/Panel/MarginContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="ImportButton" type="Button" parent="SplitContainer/Panel/MarginContainer/BoxContainer"]
+layout_mode = 2
+text = "Import 3D scene (.glb/.gltf)"
+autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="SplitContainer/Panel/MarginContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="SceneParametersLabel" type="RichTextLabel" parent="SplitContainer/Panel/MarginContainer/BoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Scene Parameters"
+fit_content = true
+
+[node name="HSeparator2" type="HSeparator" parent="SplitContainer/Panel/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="ParametersContainer" type="BoxContainer" parent="SplitContainer/Panel/MarginContainer/BoxContainer" node_paths=PackedStringArray("material_setter", "single_color_panel", "single_color_button", "color_edit", "color_rect")]
+layout_mode = 2
+script = ExtResource("3_nfk4m")
+material_setter = NodePath("../../../../Control/SubViewportContainer/SubViewport/ScenePreview/MaterialSetter")
+single_color_panel = NodePath("BoxContainer/SingleColorContainer/Panel")
+single_color_button = NodePath("BoxContainer/SingleColorContainer/SingleColorButton")
+color_edit = NodePath("BoxContainer/SingleColorContainer/Panel/LineEdit")
+color_rect = NodePath("BoxContainer/SingleColorContainer/Panel/ColorRect")
+single_color_material = SubResource("StandardMaterial3D_hq1ik")
+
+[node name="Spacer" type="Control" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="SingleColorContainer" type="BoxContainer" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SingleColorButton" type="CheckButton" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/SingleColorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+text = "Single Color Meshes"
+
+[node name="Panel" type="Panel" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/SingleColorContainer"]
+visible = false
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/SingleColorContainer/Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_right = 82.5625
+offset_bottom = 31.0
+size_flags_horizontal = 3
+theme_override_colors/selection_color = Color(0.5019608, 0.5019608, 0.5019608, 0)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hq1ik")
+placeholder_text = "000000"
+max_length = 6
+emoji_menu_enabled = false
+flat = true
+
+[node name="Label" type="Label" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/SingleColorContainer/Panel/LineEdit"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 4.0
+offset_right = 3.0
+offset_bottom = 27.0
+text = "#"
+
+[node name="ColorRect" type="ColorRect" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/SingleColorContainer/Panel"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_left = 81.0
+offset_top = 5.0
+offset_right = 101.0
+offset_bottom = 25.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HSeparator" type="HSeparator" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_nfk4m")
+
+[node name="NavigationTypeContainer" type="BoxContainer" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Spacer" type="Control" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/NavigationTypeContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/NavigationTypeContainer"]
+layout_mode = 2
+text = "Navigation Type "
+
+[node name="OptionButton" type="OptionButton" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/NavigationTypeContainer"]
+layout_mode = 2
+focus_mode = 0
+selected = 0
+item_count = 2
+popup/item_0/text = "Center Pivot"
+popup/item_0/id = 0
+popup/item_1/text = "Not Implemented Yet"
+popup/item_1/id = 1
+popup/item_1/disabled = true
+
+[node name="HSeparator2" type="HSeparator" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_nfk4m")
+
+[node name="LightContainer" type="BoxContainer" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Spacer" type="Control" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/LightContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/LightContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Light Parameters"
+fit_content = true
+
+[node name="Label2" type="RichTextLabel" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/LightContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[right][color=red]Not Implemented Yet"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_nfk4m")
+
+[node name="EnvironmentContainer2" type="BoxContainer" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Spacer" type="Control" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/EnvironmentContainer2"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/EnvironmentContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Environment/Background"
+fit_content = true
+
+[node name="Label2" type="RichTextLabel" parent="SplitContainer/Panel/MarginContainer/BoxContainer/ParametersContainer/BoxContainer/EnvironmentContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[right][color=red]Not Implemented Yet"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveButton" type="Button" parent="SplitContainer/Panel/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Export Project"
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="SplitContainer" node_paths=PackedStringArray("camera_pivot", "split_container")]
+z_index = 15
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+mouse_default_cursor_shape = 13
+script = ExtResource("3_hq1ik")
+camera_pivot = NodePath("SubViewportContainer/SubViewport/CameraPivot")
+split_container = NodePath("..")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="SplitContainer/Control"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SplitContainer/Control/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(682, 648)
+render_target_update_mode = 4
+
+[node name="ScenePreview" type="Node3D" parent="SplitContainer/Control/SubViewportContainer/SubViewport" node_paths=PackedStringArray("camera", "import_parent", "exported_scene")]
+script = ExtResource("2_d5x1h")
+camera = NodePath("../CameraPivot")
+import_parent = NodePath("ExportScene/ImportedSceneParent")
+exported_scene = NodePath("ExportScene")
+
+[node name="ExportScene" type="Node3D" parent="SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview"]
+
+[node name="ImportedSceneParent" type="Node3D" parent="SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene/ImportedSceneParent"]
+mesh = SubResource("BoxMesh_d5x1h")
+skeleton = NodePath("../../..")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene"]
+environment = SubResource("Environment_d5x1h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene/WorldEnvironment"]
+
+[node name="MaterialSetter" type="Node" parent="SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview" node_paths=PackedStringArray("scene_parent")]
+script = ExtResource("6_nfk4m")
+scene_parent = NodePath("../ExportScene/ImportedSceneParent")
+
+[node name="CameraPivot" type="Node3D" parent="SplitContainer/Control/SubViewportContainer/SubViewport" node_paths=PackedStringArray("camera", "imported_scene_parent")]
+transform = Transform3D(0.53114724, -0.35807583, 0.76789606, 0, 0.9063079, 0.42261833, -0.84727967, -0.22447255, 0.4813829, 0, 0, 0)
+script = ExtResource("3_8mm7a")
+camera = NodePath("Camera3D")
+cam_speed = 15.0
+imported_scene_parent = NodePath("../ScenePreview/ExportScene/ImportedSceneParent")
+
+[node name="Camera3D" type="Camera3D" parent="SplitContainer/Control/SubViewportContainer/SubViewport/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.4)
