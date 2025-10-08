@@ -6,6 +6,10 @@
 # Concept
 The 3D Scene Viewer Maker generates a web visualisation program from imported 3D files.\
 Import your scene to generate a web program which can be hosted on sites like itch.io.
+
+<p align="center">
+<img src="https://github.com/turboseb/html5-3dmodel-viewer/blob/master/Illustrations/3d_scene_viewer.gif" width="300">
+
 ## Currently supported formats
 - .glb / .gltf
 
@@ -13,6 +17,8 @@ Import your scene to generate a web program which can be hosted on sites like it
 - Orbital navigation
 - Custom Color Setter
 - Generated file is itch.io compatible
+<p align="center">
+<img src="https://github.com/turboseb/html5-3dmodel-viewer/blob/master/Illustrations/3d_scene_packer.gif" width="300">
 
   ### Planned Features
   - Alternate navigation methods
