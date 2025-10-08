@@ -1,12 +1,35 @@
-# <p align="center">HTML5 3D Model Viewer
 <p align="center">
-Allows to create a web viewer for your 3D scene from glTF files.
-</p>
+<img src="https://github.com/turboseb/html5-3dmodel-viewer/blob/master/large_logo.png" width="600"> <br/> 
+
+### <p align="center"> Allows you to create a web viewer for your 3D scene.
+
+# Concept
+The 3D Scene Viewer Maker generates a web visualisation program from imported 3D files.\
+Import your scene to generate a web program which can be hosted on sites like itch.io.
+## Currently supported formats
+- .glb / .gltf
+
+## Features
+- Orbital navigation
+- Custom Color Setter
+- Generated file is itch.io compatible
+
+  ### Planned Features
+  - Alternate navigation methods
+  - Light parameters
+  - Environment parameters
+  - Custom loading screen
 
 # How to use
 - Download the latest build.
-- Extract the .zip file in a folder.
-- Launch PROGRAMNAME.exe.
+- Launch 3D Scene Packer.exe.
+- Press "Import 3D scene (.glb/.gltf)" and import your file or drag-and-drop on the window.
+- Choose your scene parameters.
+- Press "Export Project" to save the .zip file on your device.
+
+# How does it work?
+The programs packs your imported 3D scene as as .pck file and adds it to a [blank viewer](https://github.com/turboseb/html5-3dmodel-viewer-blank-project/releases/tag/v1.0.0) compressed file.\
+The Viewer preloads the package on startup and loads the scene.
 
 # Built in
 <p align="center">
