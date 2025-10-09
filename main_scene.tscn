@@ -100,6 +100,7 @@ vertical = true
 
 [node name="ImportButton" type="Button" parent="SplitContainer/Panel/MarginContainer/BoxContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Import 3D scene (.glb/.gltf)"
 icon = ExtResource("2_nfk4m")
 autowrap_mode = 2
@@ -278,6 +279,7 @@ vertical_alignment = 1
 [node name="SaveButton" type="Button" parent="SplitContainer/Panel/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
+focus_mode = 0
 text = "Export Project"
 icon = ExtResource("4_66tet")
 autowrap_mode = 2
