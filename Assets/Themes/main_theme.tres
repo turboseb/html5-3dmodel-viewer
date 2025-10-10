@@ -1,3 +1,24 @@
-[gd_resource type="Theme" format=3 uid="uid://bffndldj43qk5"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bffndldj43qk5"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_s1g48"]
+color = Color(0.8509804, 0.8509804, 0.8509804, 0.2901961)
+thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s1g48"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1g48"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
 
 [resource]
+HSeparator/styles/separator = SubResource("StyleBoxLine_s1g48")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_s1g48")
+Panel/styles/panel = SubResource("StyleBoxFlat_s1g48")

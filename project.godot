@@ -14,13 +14,13 @@ config/name="3D Scene Packer"
 config/tags=PackedStringArray("tool")
 run/main_scene="uid://cltrgb6txkvd0"
 config/features=PackedStringArray("4.5", "Forward Plus")
-boot_splash/image="uid://bailuw6yxce7r"
+boot_splash/image="uid://dek50mcvplogj"
 config/icon="uid://ckqqrug37cqgo"
 boot_splash/minimum_display_time=2000
 
 [autoload]
 
-ErrorManager="*res://Global/error_manager.tscn"
+Message="*res://Global/message_manager.tscn"
 SignalBus="*res://Global/signal_bus.gd"
 
 [display]
@@ -30,7 +30,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/git_bash_here/plugin.cfg")
+enabled=PackedStringArray("res://addons/git_bash_here/plugin.cfg", "res://addons/script_spliter/plugin.cfg")
 
 [input]
 
@@ -50,6 +50,7 @@ mouse_left={
 ]
 }
 
-[plugins]
+[rendering]
 
-git_bash_here/shortcut=Resource("uid://df2ve8i42uprp", "res://addons/git_bash_here/git_bash_here_shortcut.tres")
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

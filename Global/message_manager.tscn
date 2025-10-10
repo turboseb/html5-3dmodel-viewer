@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://jj5rgno7m0uy"]
+
+[ext_resource type="Script" uid="uid://c36tvtkx3wt61" path="res://Global/message_manager.gd" id="1_upiip"]
+[ext_resource type="PackedScene" uid="uid://bc8ngyadag56b" path="res://UI/Popup/message_container.tscn" id="3_upiip"]
+
+[node name="MessageManager" type="Control" node_paths=PackedStringArray("message_list")]
+z_index = 50
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_upiip")
+message_scene = ExtResource("3_upiip")
+message_list = NodePath("MessagePlacer/MessageList")
+
+[node name="MessagePlacer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="MessageList" type="BoxContainer" parent="MessagePlacer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+vertical = true

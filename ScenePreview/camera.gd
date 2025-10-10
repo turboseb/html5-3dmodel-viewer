@@ -37,4 +37,6 @@ func reset_camera(bounds: AABB) -> float:
 	if imported_scene_parent.get_child_count() > 0:
 		
 		print(imported_scene_parent.get_child(0).get_meta_list())
+	if max_camera_distance > 1000:
+		Message.show_message(MessageContainer.message_type.warning, "3D Scene is very large, Could cause problems with ligthing/rendering")
 	return max_camera_distance

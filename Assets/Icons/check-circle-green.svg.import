@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dek50mcvplogj"
-path="res://.godot/imported/large_logo.png-a94bf5d2b82f3724a5972f2d631e45b5.ctex"
+uid="uid://w8k2dgi20y0o"
+path="res://.godot/imported/check-circle-green.svg-1a3b2d0bbfb025dda768e7913867f14b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://large_logo.png"
-dest_files=["res://.godot/imported/large_logo.png-a94bf5d2b82f3724a5972f2d631e45b5.ctex"]
+source_file="res://Assets/Icons/check-circle-green.svg"
+dest_files=["res://.godot/imported/check-circle-green.svg-1a3b2d0bbfb025dda768e7913867f14b.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

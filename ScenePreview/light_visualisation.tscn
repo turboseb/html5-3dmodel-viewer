@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsctui8qxshvh"]
+
+[ext_resource type="Texture2D" uid="uid://teb3jxbsnni4" path="res://Assets/Icons/GizmoDirectionalLight.svg" id="1_35wq2"]
+[ext_resource type="Script" uid="uid://dmu18a3ikj080" path="res://ScenePreview/light_visualisation.gd" id="2_ewxsk"]
+[ext_resource type="Texture2D" uid="uid://b050hgd3eaybk" path="res://Assets/Icons/GizmoLight.svg" id="3_ritlp"]
+[ext_resource type="Texture2D" uid="uid://1ijxqfvxjq7c" path="res://Assets/Icons/GizmoSpotLight.svg" id="4_i6b7i"]
+
+[node name="Sprite3D" type="Sprite3D"]
+pixel_size = 0.0008
+billboard = 1
+fixed_size = true
+texture = ExtResource("1_35wq2")
+script = ExtResource("2_ewxsk")
+light_icons = Dictionary[String, Texture2D]({
+"DirectionalLight3D": ExtResource("1_35wq2"),
+"OmniLight3D": ExtResource("3_ritlp"),
+"SpotLight3D": ExtResource("4_i6b7i")
+})

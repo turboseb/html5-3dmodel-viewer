@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/turboseb/html5-3dmodel-viewer/blob/master/large_logo.png" width="600"> <br/> 
+<img src="https://github.com/turboseb/html5-3dmodel-viewer/blob/master/Assets/Illustrations/large_logo.png" width="600"> <br/> 
 
 ### <p align="center"> Allows you to create a web viewer for your 3D scene.
 
@@ -22,10 +22,10 @@ Import your scene to generate a web program which can be hosted on sites like it
 
 # How to use
 - Download the latest build.
-- Launch 3D Scene Packer.exe.
-- Press "Import 3D scene (.glb/.gltf)" and import your file or drag-and-drop on the window.
+- Launch 3D_Scene_Packer.exe / 3D_Scene_Packer.x86_64.
+- Press "<img src="https://github.com/turboseb/html5-3dmodel-viewer/blob/master/Assets/Icons/download_black.svg#gh-light-mode-only" width="15"><img src="https://github.com/turboseb/html5-3dmodel-viewer/blob/master/Assets/Icons/download_white.svg#gh-dark-mode-only" width="15"> Import 3D scene (.glb/.gltf)" and import your file or drag-and-drop on the window.
 - Choose your scene parameters.
-- Press "Export Project" to save the .zip file on your device.
+- Press "<img src="https://github.com/turboseb/html5-3dmodel-viewer/blob/master/Assets/Icons/package_black.svg#gh-light-mode-only" width="15"><img src="https://github.com/turboseb/html5-3dmodel-viewer/blob/master/Assets/Icons/package_white.svg#gh-dark-mode-only" width="15"> Export Project" to save the .zip file on your device.
 
 # How does it work?
 The programs packs your imported 3D scene as as .pck file and adds it to a [blank viewer](https://github.com/turboseb/html5-3dmodel-viewer-blank-project/releases/tag/v1.0.0) compressed file.\

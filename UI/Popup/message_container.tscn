@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://bc8ngyadag56b"]
+
+[ext_resource type="Script" uid="uid://bclsu3phdj4w1" path="res://UI/Popup/message_container.gd" id="1_convv"]
+[ext_resource type="Theme" uid="uid://bffndldj43qk5" path="res://Assets/Themes/main_theme.tres" id="1_fxi3f"]
+[ext_resource type="Texture2D" uid="uid://55sahfhimmup" path="res://Assets/Icons/alert-circle-orange.svg" id="2_gjos8"]
+[ext_resource type="Texture2D" uid="uid://bruvpcvsfn525" path="res://Assets/Icons/alert-circle-red.svg" id="3_m3163"]
+[ext_resource type="Texture2D" uid="uid://w8k2dgi20y0o" path="res://Assets/Icons/check-circle-green.svg" id="4_m3163"]
+
+[node name="MarginContainer" type="MarginContainer" node_paths=PackedStringArray("label", "margin_node", "container", "kill_timer")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+script = ExtResource("1_convv")
+message_icons = Dictionary[int, Texture2D]({
+0: ExtResource("4_m3163"),
+1: ExtResource("2_gjos8"),
+2: ExtResource("3_m3163")
+})
+label = NodePath("MessageContainer/PanelContainer/TextMargin/MessageLabel")
+margin_node = NodePath("MessageContainer")
+container = NodePath("MessageContainer/PanelContainer")
+kill_timer = NodePath("MessageContainer/Timer")
+
+[node name="MessageContainer" type="Control" parent="."]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MessageContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+offset_left = -159.0
+offset_bottom = 29.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Panel" type="Panel" parent="MessageContainer/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_fxi3f")
+
+[node name="TextMargin" type="MarginContainer" parent="MessageContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="MessageLabel" type="RichTextLabel" parent="MessageContainer/PanelContainer/TextMargin"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[img=20]uid://55sahfhimmup[/img] This is a warning"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Timer" type="Timer" parent="MessageContainer"]
+wait_time = 5.0
+one_shot = true
+autostart = true
