@@ -5,9 +5,9 @@ extends BoxContainer
 @export var slider_name: String:
 	set(value):
 		slider_name = value
-		label.text = value
+		label.text = value + "   "
 		label.visible = (value != "")
-		spacer.visible = label.visible
+
 
 @export var max_value: float = 2.0
 @export var min_value: float = 0.0
@@ -23,7 +23,6 @@ extends BoxContainer
 @export var reset_button: Button
 @export var label: Label
 @export var delay_timer: Timer
-@export var spacer: Control
 
 signal value_changed(value: float)
 
@@ -31,10 +30,9 @@ var default_slider_value: float
 
 
 func _ready() -> void:
+	slider.tooltip_text = get_tooltip()
 	if Engine.is_editor_hint():
 		return
-	if slider_name == "":
-		spacer.hide()
 	reset_button.disabled = true
 	setup_slider()
 	default_slider_value = slider_value

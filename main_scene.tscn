@@ -167,13 +167,13 @@ grow_vertical = 2
 script = ExtResource("1_wr18j")
 gltf_importer = NodePath("glTFImporter")
 package_exporter = NodePath("PackageExporter")
-scene_preview = NodePath("MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview")
-scene_parameters = NodePath("MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters")
+scene_preview = NodePath("MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview")
+scene_parameters = NodePath("MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters")
 metadata/test = true
 
 [node name="glTFImporter" type="Node" parent="." node_paths=PackedStringArray("import_button", "load_dialog", "save_dialog")]
 script = ExtResource("1_gyfs4")
-import_button = NodePath("../MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ImportButton")
+import_button = NodePath("../MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ImportButton")
 load_dialog = NodePath("LoadDialog")
 save_dialog = NodePath("../PackageExporter/ExportDialog")
 
@@ -193,9 +193,9 @@ folder_creation_enabled = false
 [node name="PackageExporter" type="Node" parent="." node_paths=PackedStringArray("export_button", "export_dialog", "exported_scene")]
 script = ExtResource("2_7ycvg")
 file_name = "custom_scene"
-export_button = NodePath("../MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ExportButton")
+export_button = NodePath("../MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ExportButton")
 export_dialog = NodePath("ExportDialog")
-exported_scene = NodePath("../MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene")
+exported_scene = NodePath("../MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview/ExportScene")
 
 [node name="ExportDialog" type="FileDialog" parent="PackageExporter"]
 oversampling_override = 1.0
@@ -230,12 +230,12 @@ theme_override_constants/separation = 0
 theme_override_styles/split_bar_background = SubResource("StyleBoxFlat_d5x1h")
 split_offset = -110
 
-[node name="Panel" type="ColorRect" parent="MarginContainer/SplitContainer"]
+[node name="ToolBoxPanel" type="ColorRect" parent="MarginContainer/SplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/SplitContainer/Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel"]
 layout_direction = 3
 layout_mode = 1
 anchors_preset = 15
@@ -245,7 +245,7 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
@@ -255,13 +255,13 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="SceneParameters" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer" node_paths=PackedStringArray("parameters")]
+[node name="SceneParameters" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer" node_paths=PackedStringArray("parameters")]
 layout_mode = 2
 vertical = true
 script = ExtResource("4_42l1d")
 parameters = [NodePath("ParametersContainer/BoxContainer/SingleColorContainer"), NodePath("LightParametersContainer"), NodePath("EnvironmentParametersContainer")]
 
-[node name="ImportButton" type="Button" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters"]
+[node name="ImportButton" type="Button" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters"]
 layout_mode = 2
 focus_mode = 0
 text = "Import 3D scene (.glb/.gltf)"
@@ -269,53 +269,53 @@ icon = ExtResource("2_nfk4m")
 autowrap_mode = 2
 expand_icon = true
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters"]
 layout_mode = 2
 
-[node name="SceneParametersLabel" type="Label" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters"]
+[node name="SceneParametersLabel" type="Label" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters"]
 layout_mode = 2
 text = "Scene Parameters"
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters"]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="ParametersContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters"]
+[node name="ParametersContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters"]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 vertical = true
 
-[node name="SingleColorContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer" node_paths=PackedStringArray("material_setter", "single_color_panel", "single_color_button", "color_edit", "shaded_checkbox")]
+[node name="SingleColorContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer" node_paths=PackedStringArray("material_setter", "single_color_panel", "single_color_button", "color_edit", "shaded_checkbox")]
 layout_mode = 2
 theme_override_constants/separation = 8
 script = ExtResource("3_nfk4m")
-material_setter = NodePath("../../../../../../../Control/SubViewportContainer/SubViewport/ScenePreview/MaterialSetter")
+material_setter = NodePath("../../../../../../../3DViewContainer/SubViewportContainer/SubViewport/ScenePreview/MaterialSetter")
 single_color_panel = NodePath("Panel")
 single_color_button = NodePath("SingleColorButton")
 color_edit = NodePath("Panel/LineEdit")
 single_color_material = SubResource("StandardMaterial3D_hq1ik")
 shaded_checkbox = NodePath("Panel/CheckBox")
 
-[node name="SingleColorButton" type="CheckButton" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer"]
+[node name="SingleColorButton" type="CheckButton" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "Replace mesh textures with a single color"
 focus_mode = 0
 text = "Single Color Meshes"
 
-[node name="Panel" type="Panel" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer"]
 visible = false
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer/Panel" node_paths=PackedStringArray("color_rect")]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer/Panel" node_paths=PackedStringArray("color_rect")]
 layout_mode = 0
 offset_left = 14.0
 offset_right = 82.5625
@@ -330,7 +330,7 @@ flat = true
 script = ExtResource("7_u0ygc")
 color_rect = NodePath("../ColorRect")
 
-[node name="Label" type="Label" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer/Panel/LineEdit"]
+[node name="Label" type="Label" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer/Panel/LineEdit"]
 layout_mode = 0
 offset_left = -8.0
 offset_top = 4.0
@@ -338,7 +338,7 @@ offset_right = 3.0
 offset_bottom = 27.0
 text = "#"
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer/Panel"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer/Panel"]
 visible = false
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 0
@@ -349,7 +349,7 @@ offset_bottom = 25.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CheckBox" type="CheckBox" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer/Panel"]
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/SingleColorContainer/Panel"]
 layout_mode = 0
 offset_left = 128.0
 offset_right = 214.0
@@ -359,25 +359,25 @@ focus_mode = 0
 button_pressed = true
 text = "Shaded"
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_constants/separation = 1
 theme_override_styles/separator = SubResource("StyleBoxLine_nfk4m")
 
-[node name="NavigationTypeContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer"]
+[node name="NavigationTypeContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Spacer" type="Control" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/NavigationTypeContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/NavigationTypeContainer"]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/NavigationTypeContainer"]
+[node name="Label" type="Label" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/NavigationTypeContainer"]
 layout_mode = 2
 text = "Navigation Type "
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/NavigationTypeContainer"]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer/BoxContainer/NavigationTypeContainer"]
 layout_mode = 2
 focus_mode = 0
 selected = 0
@@ -388,11 +388,11 @@ popup/item_1/text = "Not Implemented Yet"
 popup/item_1/id = 1
 popup/item_1/disabled = true
 
-[node name="Spacer2" type="Control" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer"]
+[node name="Spacer2" type="Control" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/ParametersContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="LightParametersContainer" type="FoldableContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters" node_paths=PackedStringArray("il_slider", "sun_button", "sun_slider", "sun_hex", "sun_panel", "light_setter")]
+[node name="LightParametersContainer" type="FoldableContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters" node_paths=PackedStringArray("il_slider", "sun_button", "sun_slider", "sun_hex", "sun_panel", "light_setter")]
 layout_mode = 2
 focus_mode = 0
 title = "Lights"
@@ -402,39 +402,39 @@ sun_button = NodePath("SpaceContainer/BoxContainer/BoxContainer/SunButton")
 sun_slider = NodePath("SpaceContainer/BoxContainer/SunSliderContainer")
 sun_hex = NodePath("SpaceContainer/BoxContainer/BoxContainer/Panel/LineEdit")
 sun_panel = NodePath("SpaceContainer/BoxContainer/BoxContainer/Panel")
-light_setter = NodePath("../../../../../Control/SubViewportContainer/SubViewport/ScenePreview/LightPreview")
+light_setter = NodePath("../../../../../3DViewContainer/SubViewportContainer/SubViewport/ScenePreview/LightPreview")
 
-[node name="SpaceContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer"]
+[node name="SpaceContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer"]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 vertical = true
 
-[node name="ILPowerLabel" type="Label" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer"]
+[node name="ILPowerLabel" type="Label" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer"]
 layout_mode = 2
 text = "Imported Lights Power"
 
-[node name="ILSliderContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer" instance=ExtResource("6_42l1d")]
+[node name="ILSliderContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer" instance=ExtResource("6_42l1d")]
 layout_mode = 2
-tooltip_text = "Set the power of lights imported from the imported scene"
+tooltip_text = "Set the power of lights from the imported scene"
 max_value = 1.5
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_constants/separation = 1
 theme_override_styles/separator = SubResource("StyleBoxLine_nfk4m")
 
-[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer"]
 layout_mode = 2
 
-[node name="SunButton" type="CheckButton" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer/BoxContainer"]
+[node name="SunButton" type="CheckButton" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -443,13 +443,13 @@ focus_mode = 0
 button_pressed = true
 text = "Additional Sun"
 
-[node name="Panel" type="Panel" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer/BoxContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer/BoxContainer"]
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer/BoxContainer/Panel" node_paths=PackedStringArray("color_rect")]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer/BoxContainer/Panel" node_paths=PackedStringArray("color_rect")]
 layout_mode = 0
 offset_left = 14.0
 offset_right = 82.5625
@@ -465,7 +465,7 @@ flat = true
 script = ExtResource("7_u0ygc")
 color_rect = NodePath("../ColorRect")
 
-[node name="Label" type="Label" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer/BoxContainer/Panel/LineEdit"]
+[node name="Label" type="Label" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer/BoxContainer/Panel/LineEdit"]
 layout_mode = 0
 offset_left = -8.0
 offset_top = 4.0
@@ -473,8 +473,7 @@ offset_right = 3.0
 offset_bottom = 27.0
 text = "#"
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer/BoxContainer/Panel"]
-visible = false
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer/BoxContainer/Panel"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 0
 offset_left = 81.0
@@ -484,16 +483,16 @@ offset_bottom = 25.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="SunSliderContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer" instance=ExtResource("6_42l1d")]
+[node name="SunSliderContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer/BoxContainer" instance=ExtResource("6_42l1d")]
 layout_mode = 2
 tooltip_text = "Set the power of the sun light"
 slider_name = "Sun Power"
 
-[node name="Spacer2" type="Control" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer"]
+[node name="Spacer2" type="Control" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/LightParametersContainer/SpaceContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="EnvironmentParametersContainer" type="FoldableContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters" node_paths=PackedStringArray("amb_slider", "amb_hex", "bg_hex")]
+[node name="EnvironmentParametersContainer" type="FoldableContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters" node_paths=PackedStringArray("amb_slider", "amb_hex", "bg_hex")]
 layout_mode = 2
 focus_mode = 0
 title = "Environment"
@@ -503,34 +502,34 @@ amb_hex = NodePath("SpacerContainer/BoxContainer/AmbLightContainer/Panel/LineEdi
 bg_hex = NodePath("SpacerContainer/BoxContainer/BgColorContainer/Panel/LineEdit")
 environment = SubResource("Environment_d5x1h")
 
-[node name="SpacerContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer"]
+[node name="SpacerContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer"]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 vertical = true
 
-[node name="BgColorContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer"]
+[node name="BgColorContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/BgColorContainer"]
+[node name="Label" type="Label" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/BgColorContainer"]
 layout_mode = 2
 tooltip_text = "Set the color of the background environment"
 mouse_filter = 1
 text = "Background Color"
 
-[node name="Panel" type="Panel" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/BgColorContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/BgColorContainer"]
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/BgColorContainer/Panel" node_paths=PackedStringArray("color_rect")]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/BgColorContainer/Panel" node_paths=PackedStringArray("color_rect")]
 layout_mode = 0
 offset_left = 14.0
 offset_right = 82.5625
@@ -546,7 +545,7 @@ flat = true
 script = ExtResource("7_u0ygc")
 color_rect = NodePath("../ColorRect")
 
-[node name="Label" type="Label" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/BgColorContainer/Panel/LineEdit"]
+[node name="Label" type="Label" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/BgColorContainer/Panel/LineEdit"]
 layout_mode = 0
 offset_left = -8.0
 offset_top = 4.0
@@ -554,7 +553,7 @@ offset_right = 3.0
 offset_bottom = 27.0
 text = "#"
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/BgColorContainer/Panel"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/BgColorContainer/Panel"]
 visible = false
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 0
@@ -565,28 +564,28 @@ offset_bottom = 25.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_constants/separation = 1
 theme_override_styles/separator = SubResource("StyleBoxLine_nfk4m")
 
-[node name="AmbLightContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer"]
+[node name="AmbLightContainer" type="BoxContainer" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/AmbLightContainer"]
+[node name="Label" type="Label" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/AmbLightContainer"]
 layout_mode = 2
 tooltip_text = "Set the color of the ambient lighting"
 mouse_filter = 1
 text = "Ambient Lighting"
 
-[node name="Panel" type="Panel" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/AmbLightContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/AmbLightContainer"]
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/AmbLightContainer/Panel" node_paths=PackedStringArray("color_rect")]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/AmbLightContainer/Panel" node_paths=PackedStringArray("color_rect")]
 layout_mode = 0
 offset_left = 14.0
 offset_right = 82.5625
@@ -602,7 +601,7 @@ flat = true
 script = ExtResource("7_u0ygc")
 color_rect = NodePath("../ColorRect")
 
-[node name="Label" type="Label" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/AmbLightContainer/Panel/LineEdit"]
+[node name="Label" type="Label" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/AmbLightContainer/Panel/LineEdit"]
 layout_mode = 0
 offset_left = -8.0
 offset_top = 4.0
@@ -610,7 +609,7 @@ offset_right = 3.0
 offset_bottom = 27.0
 text = "#"
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/AmbLightContainer/Panel"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer/AmbLightContainer/Panel"]
 visible = false
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 0
@@ -621,16 +620,16 @@ offset_bottom = 25.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="AmbSliderContainer2" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer" instance=ExtResource("6_42l1d")]
+[node name="AmbSliderContainer2" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer/BoxContainer" instance=ExtResource("6_42l1d")]
 layout_mode = 2
 tooltip_text = "Set the power of the ambient lighting"
 slider_name = "Light Power"
 
-[node name="Spacer2" type="Control" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer"]
+[node name="Spacer2" type="Control" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters/EnvironmentParametersContainer/SpacerContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="ExportButton" type="Button" parent="MarginContainer/SplitContainer/Panel/ScrollContainer/MarginContainer/SceneParameters"]
+[node name="ExportButton" type="Button" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters"]
 layout_mode = 2
 size_flags_vertical = 10
 focus_mode = 0
@@ -638,7 +637,7 @@ text = "Export Project"
 icon = ExtResource("4_66tet")
 autowrap_mode = 2
 
-[node name="Control" type="Control" parent="MarginContainer/SplitContainer" node_paths=PackedStringArray("camera_pivot", "split_container")]
+[node name="3DViewContainer" type="Control" parent="MarginContainer/SplitContainer" node_paths=PackedStringArray("camera_pivot", "split_container")]
 z_index = 15
 layout_mode = 2
 size_flags_horizontal = 3
@@ -648,7 +647,7 @@ script = ExtResource("3_hq1ik")
 camera_pivot = NodePath("SubViewportContainer/SubViewport/CameraPivot")
 split_container = NodePath("..")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/SplitContainer/Control"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/SplitContainer/3DViewContainer"]
 z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
@@ -660,66 +659,66 @@ size_flags_horizontal = 3
 mouse_filter = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/SplitContainer/Control/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(682, 628)
 render_target_update_mode = 4
 
-[node name="ScenePreview" type="Node3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport" node_paths=PackedStringArray("camera", "import_parent", "exported_scene", "light_preview")]
+[node name="ScenePreview" type="Node3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("camera", "import_parent", "exported_scene", "light_preview")]
 script = ExtResource("2_d5x1h")
 camera = NodePath("../CameraPivot")
 import_parent = NodePath("ExportScene/ImportedSceneParent")
 exported_scene = NodePath("ExportScene")
 light_preview = NodePath("LightPreview")
 
-[node name="ExportScene" type="Node3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview"]
+[node name="ExportScene" type="Node3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview"]
 editor_description = "Contains The Imported 3D scene + custom environment and lighting"
 
-[node name="ImportedSceneParent" type="Node3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene"]
+[node name="ImportedSceneParent" type="Node3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview/ExportScene"]
 
-[node name="bleb" type="Node3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene/ImportedSceneParent"]
+[node name="bleb" type="Node3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview/ExportScene/ImportedSceneParent"]
 
-[node name="bleb_head_003" type="MeshInstance3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene/ImportedSceneParent/bleb"]
+[node name="bleb_head_003" type="MeshInstance3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview/ExportScene/ImportedSceneParent/bleb"]
 transform = Transform3D(0.9317241, -0.20680653, -0.2985319, 0.2166876, 0.976241, 2.1234155e-07, 0.291439, -0.064688355, 0.95439965, 0.24298024, -0.18438148, -0.2294834)
 mesh = SubResource("ArrayMesh_wr18j")
 skeleton = NodePath("")
 blend_shapes/happy = 0.0
 
-[node name="bleb_head_004" type="MeshInstance3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene/ImportedSceneParent/bleb"]
+[node name="bleb_head_004" type="MeshInstance3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview/ExportScene/ImportedSceneParent/bleb"]
 transform = Transform3D(-0.14036942, -0.017626468, -0.98994225, -0.1245933, 0.9922079, -4.8428774e-08, 0.9822286, 0.123340175, -0.14147174, -0.2687596, -0.18438148, 0.21843275)
 mesh = SubResource("ArrayMesh_qwutr")
 skeleton = NodePath("")
 blend_shapes/happy = 0.0
 
-[node name="bleb_head_005" type="MeshInstance3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene/ImportedSceneParent/bleb"]
+[node name="bleb_head_005" type="MeshInstance3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview/ExportScene/ImportedSceneParent/bleb"]
 transform = Transform3D(0.28595644, -0.2081997, -0.9353512, 0.58859956, 0.8084248, 5.9604645e-08, 0.75616103, -0.5505473, 0.35372055, 0.016485631, 0.3197745, 0.032984823)
 mesh = SubResource("ArrayMesh_671wp")
 skeleton = NodePath("")
 blend_shapes/happy = 0.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview/ExportScene"]
 environment = SubResource("Environment_d5x1h")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview/ExportScene/WorldEnvironment"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview/ExportScene/WorldEnvironment"]
 shadow_enabled = true
 
-[node name="MaterialSetter" type="Node" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview" node_paths=PackedStringArray("scene_parent")]
+[node name="MaterialSetter" type="Node" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview" node_paths=PackedStringArray("scene_parent")]
 script = ExtResource("6_nfk4m")
 scene_parent = NodePath("../ExportScene/ImportedSceneParent")
 
-[node name="LightPreview" type="Node3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/ScenePreview" node_paths=PackedStringArray("sun")]
+[node name="LightPreview" type="Node3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview" node_paths=PackedStringArray("sun")]
 script = ExtResource("10_qwutr")
 light_preview_scene = ExtResource("11_671wp")
 sun = NodePath("../ExportScene/WorldEnvironment/DirectionalLight3D")
 
-[node name="CameraPivot" type="Node3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport" node_paths=PackedStringArray("camera", "imported_scene_parent")]
+[node name="CameraPivot" type="Node3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("camera", "imported_scene_parent")]
 transform = Transform3D(0.53114724, -0.35807583, 0.76789606, 0, 0.9063079, 0.42261833, -0.84727967, -0.22447255, 0.4813829, 0, 0, 0)
 script = ExtResource("3_8mm7a")
 camera = NodePath("Camera3D")
 cam_speed = 15.0
 imported_scene_parent = NodePath("../ScenePreview/ExportScene/ImportedSceneParent")
 
-[node name="Camera3D" type="Camera3D" parent="MarginContainer/SplitContainer/Control/SubViewportContainer/SubViewport/CameraPivot"]
+[node name="Camera3D" type="Camera3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.32)
 
 [node name="VersionChangelogLink" type="LinkButton" parent="."]
@@ -735,7 +734,7 @@ grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
 text = "version 1.0.1"
-uri = "https://itch.io/dashboard/post/1081891"
+uri = "https://turboseb.itch.io/3d-scene-viewer/devlog/1081891/v101-let-there-be-light"
 
 [node name="DocumentationLink" type="LinkButton" parent="."]
 layout_mode = 1
