@@ -12,13 +12,15 @@ Import your scene to generate a web program which can be hosted on sites like it
 ## Features
 - Orbital navigation
 - Custom Color Setter
+- Light parameters
+- Environment parameters
 - Generated file is itch.io compatible
 
   ### Planned Features
   - Alternate navigation methods
-  - Light parameters
-  - Environment parameters
   - Custom loading screen
+
+  ### [Documentation](https://html5-3dmodel-viewer-documentation.readthedocs.io/en/latest/)
 
 # How to use
 - Download the latest build.
