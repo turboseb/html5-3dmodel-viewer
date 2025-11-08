@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=4 uid="uid://cltrgb6txkvd0"]
+[gd_scene load_steps=31 format=4 uid="uid://cltrgb6txkvd0"]
 
 [ext_resource type="Script" uid="uid://yoa6e75uq1qn" path="res://Import/gltf_importer.gd" id="1_gyfs4"]
 [ext_resource type="Script" uid="uid://cuoj84pbcm2re" path="res://main_scene.gd" id="1_wr18j"]
+[ext_resource type="Script" uid="uid://svv1wqq322p8" path="res://Versioning/version_manager.gd" id="2_6jybn"]
 [ext_resource type="Script" uid="uid://0em0a38uw6y8" path="res://Export/package_exporter.gd" id="2_7ycvg"]
 [ext_resource type="Script" uid="uid://coy6krpuead4" path="res://ScenePreview/scene_preview.gd" id="2_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://chbi13xm4i6v0" path="res://Assets/Icons/download_white.svg" id="2_nfk4m"]
@@ -170,6 +171,51 @@ package_exporter = NodePath("PackageExporter")
 scene_preview = NodePath("MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/ScenePreview")
 scene_parameters = NodePath("MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters")
 metadata/test = true
+
+[node name="VersionManager" type="Node" parent="." node_paths=PackedStringArray("version_changelog_link", "requester", "update_available_link")]
+script = ExtResource("2_6jybn")
+version = Vector3i(1, 0, 1)
+version_changelog = "https://turboseb.itch.io/3d-scene-viewer/devlog/1081891/v101-let-there-be-light"
+version_changelog_link = NodePath("BoxContainer/VersionChangelogLink")
+requester = NodePath("HTTPRequest")
+update_available_link = NodePath("BoxContainer/UpdateAvailableLink")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="VersionManager"]
+
+[node name="BoxContainer" type="BoxContainer" parent="VersionManager"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="UpdateAvailableLink" type="LinkButton" parent="VersionManager/BoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+tooltip_text = "https://turboseb.itch.io/3d-scene-viewer"
+focus_mode = 0
+theme_override_colors/font_color = Color(0.9882353, 0.8627451, 0.39607844, 1)
+text = "Update available: 1.0.1"
+uri = "https://turboseb.itch.io/3d-scene-viewer"
+
+[node name="Control" type="Control" parent="VersionManager/BoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="VersionChangelogLink" type="LinkButton" parent="VersionManager/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+tooltip_text = "https://turboseb.itch.io/3d-scene-viewer/devlog/..."
+focus_mode = 0
+text = "version1.0.1"
+uri = "https://turboseb.itch.io/3d-scene-viewer/devlog/1081891/v101-let-there-be-light"
 
 [node name="glTFImporter" type="Node" parent="." node_paths=PackedStringArray("import_button", "load_dialog", "save_dialog")]
 script = ExtResource("1_gyfs4")
@@ -725,22 +771,6 @@ imported_scene_parent = NodePath("../ScenePreview/ExportScene/ImportedSceneParen
 
 [node name="Camera3D" type="Camera3D" parent="MarginContainer/SplitContainer/3DViewContainer/SubViewportContainer/SubViewport/CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.32)
-
-[node name="VersionChangelogLink" type="LinkButton" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -98.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-tooltip_text = "https://turboseb.itch.io/3d-scene-viewer/devlog/..."
-focus_mode = 0
-text = "version 1.0.1"
-uri = "https://turboseb.itch.io/3d-scene-viewer/devlog/1081891/v101-let-there-be-light"
 
 [node name="DocumentationLink" type="LinkButton" parent="."]
 layout_mode = 1
