@@ -629,9 +629,14 @@ slider_name = "Light Power"
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="ExportButton" type="Button" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters"]
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters"]
 layout_mode = 2
 size_flags_vertical = 10
+theme_override_constants/separation = 1
+
+[node name="ExportButton" type="Button" parent="MarginContainer/SplitContainer/ToolBoxPanel/ScrollContainer/MarginContainer/SceneParameters"]
+layout_mode = 2
+size_flags_vertical = 8
 focus_mode = 0
 text = "Export Project"
 icon = ExtResource("4_66tet")
